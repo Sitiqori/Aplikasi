@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<head lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"></head>
+<style>
+
+body{
+    height: 100vh; 
+    background-color: #EEEFE1;
+}
+.body-content{
+    height: 100vh;
+    
+}
+.sidebar{
+    background-color: #EEEFE1;
+    padding-top: 20px;
+    height: 100vh;
+    
+}
+.sidebar a{
+    color: #1C1A1B;
+    text-decoration: none;
+    display: block;
+    padding: 12px;
+    padding-left: 50px;
+    
+}
+
+.kepala{
+    width: 3rem;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+}
+.logo{
+    background-color: #1C1A1B;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 80%;
+}
+
+.isi{
+    height: 100vh;
+    
+}
+.col-lg-7{
+    padding-top: 2rem;
+    padding-left: 2rem;
+    background-color: #EEEFE1;
+}
+.col-lg-5{
+    padding-top: 2rem;
+    padding-left: 2rem;
+    background-color: #fdfcfb;
+}
+.judul{
+    font-size: 35px;
+    font-family: marmelad;
+}
+.desk{
+    width: 65%;
+}
+.next{
+    border-radius: 30px;    
+    background-color: #1C1A1B;
+    color: #EEEFE1;
+}
+.ke1{
+    background-color: gray;
+    width: 96px;
+    height: 128px;
+    border-radius: 5%;
+    margin-right: 10px;
+}
+.books{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+.book-ju{
+    font-size: 25px;
+    font-family: marmelad;
+}
+.cat-ju{
+    font-size: 20px;
+    font-family: marmelad;
+}
+.cat1{
+    background-color: 50% #fdfcfb;
+    width: 85px;
+    height: 100px;
+    border-radius: 2px;
+}
+.log-cat{
+    background-color: lightgrey;
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    position: relative;
+    top: 15px;
+    left: 28px;
+
+}
+.t-cat{
+    color: gray;
+    position: relative;
+    top: 23px;
+    left: 20px;
+}
+.c-book-sin{
+    background-color: gray;
+    width: 400px;
+    height: 220px;
+    border-radius: 10px ;
+    position: absolute;
+    right: 28%; 
+
+}
+.ket-sin{
+    margin-left: 9rem;
+    margin-top: 1rem;
+}
+.title{
+    font-size: 27px;
+    width: 40%;
+    font-family: marmelad;
+
+}
+.sin{
+    font-size: 15px;
+    width: 75%;
+    font-family: marmelad;
+
+}
+.menu{
+    margin-top: 2rem;
+    font-size: 20px;
+    font-family: marmelad;
+}
+.isi-m-1{
+    background-color: lightgray;
+    width: 100px;
+    height: 80px;
+    margin-right: 1rem;
+    padding: 10px;
+    border-radius: 5px;
+}
+.isi-m-2{
+    background-color: lightgray;
+    width: 210px;
+    height: 80px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.isi-m-2-1{
+    width: 40%;
+    margin-left: 1rem;
+}
+.isi-m-2-2{
+    width: 40%;
+}
+.comentar{
+    margin-top: 3rem;
+}
+.com-g{
+    background-color: gray;
+    width: 250px;
+    height: 150px;
+    border-radius: 5px ;
+    position: absolute;
+    right: 4%; 
+}
+.title-com{
+    font-size: 20px;
+    font-family: marmelad;
+    width: 40%;
+    margin-left: 2rem;
+}
+.com-isi{
+    border-color: black;
+    background: rgb(238, 238, 238);
+    width: 150px;
+    height: 140px;
+    border-radius: 3px ;
+    position: relative;
+    margin-top: 18px;
+    margin-right: 4px;
+    padding: 1rem;
+}
+.com-isi-isi{
+    font-size: 11px;
+    font-family: marmelad;
+}
+</style>
+    <body>
+    <div class="card">
+        
+    </div>
+
+
+
+        <div class="main d-flex flex-column justify-content-between">
+            <div class="body-content h-100">
+                <div class="row g-0 h-100">
+                    <div class="sidebar col-lg-1 collapse d-lg-block" id="navbarTogglerDemo02">
+                        <div class="kepala">
+                            <h6 class="logo"></h6>
+                        </div>
+                        <!-- @if (Auth::user()->role_id == 1) -->
+                            <a href="/dashboard" >H</a>
+                            <a href="/books" >B</a>
+                            <a href="/rent">R</a>
+                            <a href="/library">L</a>
+                    </div>
+                     <div class="content col-lg-11 d-flex">
+                        
+                        <div class="isi justify-content-end col-lg-12 d-flex ">
+                            <div class="search col-lg-7 ">
+                                Search
+
+                                <p class="judul mt-5">
+                                    Happy Reading, <br> Blabla
+                                </p>
+                                <p class="desk">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium sequi non dolores consequatur assumenda sint tempora cumque provident, obcaecati ipsa sapiente ab, reprehenderit doloribus quae perspiciatis adipisci natus atque dolorem?
+                                </p>
+                                <button class="next">
+                                    Search->
+                                </button>
+
+                                <div class="books ">
+                                    <p class="book-ju">Books</p>
+                                    <div class=" d-flex">
+                                        <div class="ke1"></div>
+                                        <div class="ke1"></div>
+                                        <div class="ke1"></div>
+                                        <div class="ke1"></div>
+                                        <div class="ke1"></div>
+                                        <div class="ke1"></div>
+                                        <div class="ke1"></div>
+                                    </div>
+                                </div>
+
+                                <div class="cat-d ">
+                                    <p class="cat-ju">Category</p>
+                                    <div class=" d-flex">
+                                        <div class="cat1">
+                                            <div class="log-cat"></div>
+                                            <p class="t-cat">Romance</p>
+                                        </div>
+                                        <div class="cat1">
+                                            <div class="log-cat"></div>
+                                            <p class="t-cat">Action</p>
+                                        </div>
+                                        <div class="cat1">
+                                            <div class="log-cat"></div>
+                                            <p class="t-cat">Horor</p>
+                                        </div>
+                                        <div class="cat1">
+                                            <div class="log-cat"></div>
+                                            <p class="t-cat">Fiction</p>
+                                        </div>
+                                        <div class="cat1">
+                                            <div class="log-cat"></div>
+                                            <p class="t-cat">Comedy</p>
+                                        </div>
+                                        <div class="cat1">
+                                            <div class="log-cat"></div>
+                                            <p class="t-cat">Thriller</p>
+                                        </div>
+                                        <div class="cat1">
+                                            <div class="log-cat"></div>
+                                            <p class="t-cat">History</p>
+                                        </div>
+                                        <div class="cat1">
+                                            <div class="log-cat"></div>
+                                            <p class="t-cat">Fantasy</p>
+                                        </div>
+                                        <div class="cat1">
+                                            <div class="log-cat"></div>
+                                            <p class="t-cat">Chicklit</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+
+                            
+                            <div class="acc justify-content-end col-lg-5">
+                                Account & Setting
+                                <div class="book-sin d-flex mt-5">
+                                    <div class="c-book-sin d-flex"></div>
+                                    <div class="ket-sin ">
+                                        <p class="title">
+                                            The Prisoner of <span style=" font-size: 23px;"> Azkaban</span> -<span style=" font-size: 14px; font-family: sans-serif;">Jk Rowlings</span>
+                                        </p>
+                                        <p class="sin">
+                                            Lorem ipsum dolor sit . Voluptatibus quis eaque, reiciendis asperiores non dolorum mollitia consequuntur, distinctio iste laborum odit temporibus cupiditate?
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="menu ">
+                                    <div class="isi-menu d-flex ">
+                                        <div class="isi-m-1 justify-content-center ">
+                                            <p class="m-isi">500++ Readers</p>
+                                        </div>
+                                        <div class="isi-m-1">
+                                            <p class="m-isi">1200++ Rent</p>
+                                        </div>
+                                        <div class="isi-m-2 d-flex">
+                                            <div class="isi-m-2-1">
+                                                <p class="m-isi">2291 Book</p>
+                                            </div>
+                                            <div class="isi-m-2-2">
+                                                <p class="m-isi">100 Category</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="comentar ">
+                                    <div class="com-g d-flex"></div>
+                                    <div class="ket-com ">
+                                        <p class="title-com">
+                                            What Does Our 500++ Readers Say? 
+                                        </p>
+                                    </div>
+                                    <div class="com-com d-flex">
+                                        <div class="com-isi">
+                                            <p class="com-isi-isi"><span style="font-size: 14px; color:#1C1A1B ;">--Reihard G Lws--  </span><br>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quae inventore recusandae minima, animi tempora"</p>
+                                        </div>
+                                        <div class="com-isi">
+                                            <p class="com-isi-isi"><span style="font-size: 14px; color:#1C1A1B ;">--Reihard G Lws--  </span><br>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quae inventore recusandae minima, animi tempora"</p>
+                                        </div>
+                                        <div class="com-isi">
+                                            <p class="com-isi-isi"><span style="font-size: 14px; color:#1C1A1B ;">--Reihard G Lws--  </span><br>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quae inventore recusandae minima, animi tempora"</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
+</html>
