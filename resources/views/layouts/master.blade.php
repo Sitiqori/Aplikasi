@@ -40,14 +40,13 @@
                             class="{{ (request()->is('rent-logs*') ? 'active' : '') }}">Rent Log</a>
                         <a href="/logout">Logout</a>
                         @elseif (Auth::user()->role_id == 2)
-                        <a href="/dash-petugas" class="{{ (request()->is('dashboard') ? 'active' : '') }}">Dashboard</a>
+                        <a href="/dashboard" class="{{ (request()->is('dashboard') ? 'active' : '') }}">Dashboard</a>
                         <a href="{{ route('books.index') }}"
                             class="{{ (request()->is('books*') ? 'active' : ''); }}">Books</a>
                         <a href="{{ route('category.index') }}"
                             class="{{ (request()->is('categories*') ? 'active' : ''); }}">Categories</a>
                         <a href="{{ route('rent_logs.index') }}"
                             class="{{ (request()->is('rent-logs*') ? 'active' : '') }}">Rent Log</a>
-
                         <a href="/logout">Logout</a>
                         @else
                             <a href="{{ route('books.buku') }}" class="{{ request()->is('books*') ? 'active' : '' }}">Book</a>

@@ -72,18 +72,24 @@ Route::middleware('auth')->group(function () {
         Route::delete('/user-ban/{slug}', [UserController::class, 'destroy'])->name('users.delete');
         Route::get('user-banned', [UserController::class, 'bannedUser'])->name('users.banned');
         Route::get('user-restore/{slug}', [UserController::class, 'restore'])->name('users.restore');
+        Route::post('/change-role', [UserController::class, 'changeRole'])->name('change.role');
+
+
     });
 
     Route::prefix('rent-logs')->group(function () {
         Route::get('/', [RentLogController::class, 'index'])->name('rent_logs.index');
-        
+    
     });
 
     Route::prefix('book-rent')->group(function () {
         Route::get('/', [BookRentController::class, 'index'])->name('book-rent.index');
         Route::post('/store', [BookRentController::class, 'store'])->name('book-rent.store');
         Route::post('/pinjam', [BookRentController::class, 'pinjam'])->name('books.pinjam');
-
+        Route::post('/kembali', [BookRentController::class, 'kembali'])->name('books.kembali');
+        Route::post('/review', [BookRentController::class, 'review'])->name('books.review');
 
     });
+
+
 });

@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\Book;
-use App\Models\RentLogs;
 use App\Models\User;
+use App\Models\RentLogs;
+use App\Models\UlasanBuku;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -55,6 +56,8 @@ class BookRentController extends Controller
                 }
             }
         }
+
+        
     }
 
 
@@ -99,5 +102,53 @@ class BookRentController extends Controller
             return response()->json(['message' => 'error', 'error' => 'Buku tidak tersedia'], 422);
         }
     }
+
+
+    public function kembali(Request $request)
+    {
+        // Temukan log peminjaman berdasarkan ID
+        $rentLog = RentLogs::findOrFail($request->id);
+
+        // Update status peminjaman dan tanggal pengembalian aktual
+        $rentLog->status_peminjaman = 'dikembalikan';
+        $rentLog->tanggal_pengembalian = now();
+        $rentLog->save();
+
+        // Dapatkan informasi buku
+        $book = Book::findOrFail($rentLog->book_id);
+
+        // Update status buku menjadi tersedia
+        $book->status = 'in stock';
+        $book->save();
+
+        return redirect()->back()->with('success', 'Buku telah berhasil dikembalikan.');
+    }
+
+
+
+    public function review(Request $request)
+{
+    // Validasi request
+    $request->validate([
+        'rent_log_id' => 'required|exists:rent_logs,id',
+        'rating' => 'required|integer|min:1|max:5',
+        'review' => 'required|string',
+    ]);
+    
+    // Dapatkan book_id dari rent_log_id
+    $bookId = RentLogs::findOrFail($request->rent_log_id)->book_id;
+
+    // Simpan review ke database
+    $review = new UlasanBuku;
+    $review->user_id = auth()->user()->id;
+    $review->rent_log_id = $request->rent_log_id;
+    $review->rating = $request->rating;
+    $review->ulasan = $request->review;
+    $review->books_id = $bookId; // Mengisi 'books_id' dengan ID buku yang sesuai
+    $review->save();
+
+    return redirect()->back()->with('success', 'Review telah berhasil disimpan.');
+}
+
 
 }

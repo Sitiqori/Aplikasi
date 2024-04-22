@@ -4,21 +4,40 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\RentLogs;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $user = User::where('role_id', 2)->where('status', 'active')->get();
+        $user = User::where('role_id', '!=', 1)->where('status', 'active')->get();
         return view('users.user', compact('user'));
+
     }
 
-    public function profile()
+        public function profile()
     {
         $rentlogs = RentLogs::with(['user', 'book'])->where('user_id', Auth::user()->id)->get();
-        return view('users.profile', compact('rentlogs'));
+        return view('users.profile', ['rentlogs' => $rentlogs]);
     }
+
+
+    public function changeRole(Request $request)
+    {
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'new_role_id' => 'required|in:2,3 ',        
+        ]);
+        
+        $user = User::findOrFail($request->user_id);
+        $user->role_id = $request->new_role_id;
+        $user->save();
+        
+        return redirect()->back()->with('success', 'berhasil di update.' );
+
+    }
+
 
     public function registeredUser()
     {

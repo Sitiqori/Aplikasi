@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\UlasanBuku;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class RentLogs extends Model
 {
@@ -31,4 +32,10 @@ class RentLogs extends Model
     {
         return $this->belongsTo(Book::class, 'book_id', 'id');
     }
+
+    public function ulasanBuku()
+{
+    return $this->hasOne(UlasanBuku::class, 'rent_log_id', 'id');
+}
+
 }

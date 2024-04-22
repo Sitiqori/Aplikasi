@@ -157,8 +157,16 @@
                     <p class="title">{{ $item->title }}</p>
                     <p>bintang bintang</p>
                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <button class="btn  fw-bold {{ $item->status == 'instock' ? 'text-success' : 'text-danger' }} me-md" disabled data-bs-toggle="modal" data-bs-target="#detailModal{{ $item->id }}">In Stock</button>
-                        <!-- Button trigger modal -->
+                        <div class="">
+                            @if ($item->status == 'in stock')
+                            <button class="btn btn-primary" disabled>In stock</button>
+                            @else
+                            <button class="btn btn-secondary" disabled>Out of Stock</button>
+                            @endif
+                        </div>
+                        
+                        <!--<button class="btn  fw-bold { $item->status == 'instock' ? 'text-success' : 'text-danger' }} me-md" disabled data-bs-toggle="modal" data-bs-target="#detailModal{{ $item->id }}"></button>
+                         Button trigger modal -->
                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailModal{{ $item->id }}">Detail</button>
                     </div>
                 </div>

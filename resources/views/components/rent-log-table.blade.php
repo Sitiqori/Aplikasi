@@ -18,7 +18,7 @@
                 <td>{{ $item->user->username }}</td>
                 <td>{{ $item->book->title }}</td>
                 <td>{{ $item->tanggal_peminjaman }}</td>
-                <td>{{ $item->dikembalikan }}</td>
+                <td>{{ $item->tanggal_pengembalian }}</td>
                 <td>{{ $item->tanggal_harus_dikembalikan }}</td>
             </tr>
             @endforeach

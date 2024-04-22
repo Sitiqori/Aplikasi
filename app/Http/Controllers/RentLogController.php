@@ -13,4 +13,6 @@ class RentLogController extends Controller
         $rentlogs = RentLogs::with(['user', 'book'])->get();
         return view('rentlog.rent_log', compact('rentlogs'));
     }
+
+    
 }
