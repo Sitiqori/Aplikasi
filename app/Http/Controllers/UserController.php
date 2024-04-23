@@ -16,24 +16,33 @@ class UserController extends Controller
 
     }
 
-        public function profile()
+
+
+    public function profile()
     {
-        $rentlogs = RentLogs::with(['user', 'book'])->where('user_id', Auth::user()->id)->get();
-        return view('users.profile', ['rentlogs' => $rentlogs]);
+        $returnedRentLogs = RentLogs::with(['user', 'book'])
+            ->where('user_id', Auth::user()->id)
+            ->where('status_peminjaman', 'dikembalikan')
+            ->get();
+
+        $unreturnedRentLogs = RentLogs::with(['user', 'book'])
+            ->where('user_id', Auth::user()->id)
+            ->where('status_peminjaman', 'dipinjam')
+            ->get();
+
+        return view('users.profile', compact('returnedRentLogs', 'unreturnedRentLogs'));
     }
-
-
     public function changeRole(Request $request)
     {
         $request->validate([
             'user_id' => 'required|exists:users,id',
-            'new_role_id' => 'required|in:2,3 ',        
+            'new_role_id' => 'required|in:2,3 ',
         ]);
-        
+
         $user = User::findOrFail($request->user_id);
         $user->role_id = $request->new_role_id;
         $user->save();
-        
+
         return redirect()->back()->with('success', 'berhasil di update.' );
 
     }
