@@ -14,12 +14,18 @@
 
 #### Terdapat 3 User (Admin, Petugas, Peminjam) 
 #### Admin dapat mengakses (login, logout, Edit & Tambah Buku, Edit & Tambah Categories, Edit User, Generate Lapora. 
-#### Petugaa dapat mengakses (login, logout
+#### Petugs dapat mengakses (login, logout
 #### Peminjam dapat
 
+use cast
+![alt text](https://github.com/Sitiqori/Aplikasi/blob/main/public/Use%20Case%20Diagram%20Qori%20(1).png?raw=true) 
+
+diagram erd
+![alt text](https://github.com/Sitiqori/Aplikasi/blob/main/public/erd.png?raw=true) 
 
 
 ###   Clone 
+
    - composer install/update
    - cp .exp.example .exp
    - hp artisan key:generate
