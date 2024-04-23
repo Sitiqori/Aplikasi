@@ -95,5 +95,9 @@ Route::middleware('auth')->group(function () {
     });
 
 
+// web.php
+
+    Route::middleware('auth')->get('/add-to-collection/{book_id}', [BookController::class, 'addToCollection'])->name('add-to-collection');
+
 
 });

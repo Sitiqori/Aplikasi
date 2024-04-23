@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\KoleksiPribadi;
 use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
@@ -118,4 +119,17 @@ class BookController extends Controller
         return view('books.buku', compact('books', 'book_count'));
     }
 
+    public function addToCollection($book_id)
+{
+    // Get the authenticated user
+    $user = auth()->user();
+
+    // Find the book by ID
+    $book = Book::findOrFail($book_id);
+
+    // Attach the book to the user's collection
+    $user->koleksipribadi()->attach($book);
+
+    return redirect()->back()->with('success', 'Book added to your collection.');
+}
 }

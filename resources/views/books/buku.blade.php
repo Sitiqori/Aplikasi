@@ -126,7 +126,7 @@
                      </form>
                      <div class="">
                          <img src="{{asset('images/book.jpg')}}" class="ki-ats mt-3" alt="">
-                     </div>                    
+                     </div>
                  </div>
                  <div class="kanan col-lg-6">
                      <div class="ka-ats d-flex">
@@ -164,7 +164,7 @@
                             <button class="btn btn-secondary" disabled>Out of Stock</button>
                             @endif
                         </div>
-                        
+
                         <!--<button class="btn  fw-bold { $item->status == 'instock' ? 'text-success' : 'text-danger' }} me-md" disabled data-bs-toggle="modal" data-bs-target="#detailModal{{ $item->id }}"></button>
                          Button trigger modal -->
                         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailModal{{ $item->id }}">Detail</button>
@@ -192,6 +192,9 @@
                          <p>{{ $item->publisher }}</p>
                          <p>{{ $item->publication_year }}</p>
                          <p>{{ $item->sinopsis }}</p>
+                         <!-- Inside your book detail page -->
+                        <a class="btn btn-warning" href="{{ route('add-to-collection', ['book_id' => $item->id]) }}">Add to My Collection</a>
+
                          @if ($item->status == 'in stock')
                              <button class="btn btn-primary" onclick="pinjamBuku('{{ $item->id }}')">Pinjam</button>
                          @else
@@ -203,17 +206,17 @@
          </div>
      </div>
  </div>
- 
+
 @endforeach
       </div>
-      
+
       </div>
-      
+
          {{-- <h4 class="text-center mt-4">lorem20</h4> <!-- Pindahkan tulisan ini ke dalam div body-content --> --}}
      </div>
  </div>
- 
-        
+
+
         <script>
           function pinjamBuku(bookId) {
                // Kirim request AJAX untuk melakukan peminjaman buku
@@ -240,13 +243,13 @@
 
             function toggleDropdown(event, bookId) {
                 event.preventDefault();
-        
+
                 // Semua dropdown disembunyikan terlebih dahulu
                 var allDropdowns = document.querySelectorAll('[id^="book-details-dropdown-"]');
                 allDropdowns.forEach(function(dropdown) {
                     dropdown.style.display = 'none';
                 });
-        
+
                 // Dropdown yang sesuai dengan ID buku yang diklik ditampilkan
                 var dropdown = document.getElementById("book-details-dropdown-" + bookId);
                 dropdown.style.display = "block";
