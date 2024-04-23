@@ -6,7 +6,8 @@
 
     <div class="d-flex justify-content-start mt-5">
         <a href="{{ route('category.add') }}" class="btn btn-primary me-2">Add Data</a>
-        <a href="{{ route('category.deleted') }}" class="btn btn-danger">View Data Deleted</a>
+        <a href="{{ route('category.deleted') }}" class="btn btn-danger me-2">View Data Deleted</a>
+        <a href="{{ route('category.cetak') }}"  target="blank" class="btn btn-success me-2">Cetak</a>
     </div>
 
     <div class="mt-5">
@@ -18,7 +19,7 @@
     </div>
 
     <div class="card-body mt-5 col-lg-7">
-        
+
         <table class="table table-bordered">
             <thead class="table-light">
                 <tr class="">

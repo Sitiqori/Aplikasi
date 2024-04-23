@@ -7,7 +7,9 @@
 
  <div class="mt-5 d-flex justify-content-end">
     <a href="{{ route('books.deleted') }}" class="btn btn-danger  me-2">View Deleted Data</a>
-    <a href="{{ route('books.add') }}" class="btn btn-primary">Add Data</a>
+    <a href="{{ route('books.add') }}" class="btn btn-primary  me-2">Add Data</a>
+    <a href="{{ route('books.cetak') }}"  target="blank" class="btn btn-success me-2">Cetak</a>
+
  </div>
 
  <div class="mt-5">

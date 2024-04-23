@@ -3,10 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\BookRentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\RentLogController;
+use App\Http\Controllers\BookRentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 
@@ -38,12 +39,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('profile', [UserController::class, 'profile'])->middleware('is_client');
     Route::get('logout', [AuthController::class, 'logout']);
- 
+
 
     Route::prefix('books')->group(function () {
         Route::get('/', [BookController::class, 'index'])->name('books.index');
         Route::get('/buku', [BookController::class, 'data'])->name('books.buku');
-        
+        Route::get('cetak', [BookController::class, 'cetak'])->name('books.cetak');
         Route::get('/add', [BookController::class, 'add'])->name('books.add');
         Route::post('/add', [BookController::class, 'store'])->name('books.store');
         Route::get('/edit/{slug}', [BookController::class, 'edit'])->name('books.edit');
@@ -55,6 +56,7 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('categories')->group(function () {
         Route::get('/', [CategoryController::class, 'index'])->name('category.index');
+        Route::get('cetak', [CategoryController::class, 'cetak'])->name('category.cetak');
         Route::get('/add', [CategoryController::class, 'add'])->name('category.add');
         Route::post('/add', [CategoryController::class, 'store'])->name('category.store');
         Route::get('/edit/{slug}', [CategoryController::class, 'edit'])->name('category.edit');
@@ -79,7 +81,8 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('rent-logs')->group(function () {
         Route::get('/', [RentLogController::class, 'index'])->name('rent_logs.index');
-    
+        Route::get('cetak', [RentLogController::class, 'cetak'])->name('rent_logs.cetak');
+
     });
 
     Route::prefix('book-rent')->group(function () {
@@ -90,6 +93,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/review', [BookRentController::class, 'review'])->name('books.review');
 
     });
+
 
 
 });

@@ -17,7 +17,14 @@ class BookController extends Controller
         return view('books.index', compact('books'));
     }
 
-    
+    public function cetak()
+{
+    $books = Book::get();
+    $datacetak = $books; // Jika Anda ingin mengirimkan data lain ke view, Anda bisa menambahkannya di sini
+
+    return view('books.cetak', compact('books', 'datacetak'));
+}
+
     public function add()
     {
         $categories = Category::all();
@@ -37,7 +44,7 @@ class BookController extends Controller
             $newImage = $request->title . '-' . now()->timestamp . '.' . $exten;
             $request->file('image')->storeAs('cover', $newImage);
         }
-        
+
         $request['cover'] = $newImage;
         $book = Book::create($request->all());
         $book->categories()->sync($request->categories);
@@ -59,7 +66,7 @@ class BookController extends Controller
             $request->file('image')->storeAs('cover', $newImage);
             $request['cover'] = $newImage;
         }
-        
+
         $book = Book::where('slug', $slug)->first();
         $book->update($request->all());
 
@@ -76,7 +83,7 @@ class BookController extends Controller
         $book->delete();
         return redirect('books')->with('status', 'Book Deleted Successfully');
     }
-    
+
     public function deleted()
     {
         $book = Book::onlyTrashed()->get();
@@ -107,7 +114,7 @@ class BookController extends Controller
     {
         $books = Book::all();
         $book_count = Book::count();
-    
+
         return view('books.buku', compact('books', 'book_count'));
     }
 

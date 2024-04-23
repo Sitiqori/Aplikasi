@@ -13,6 +13,17 @@ class CategoryController extends Controller
         return view('category.index', compact('categories'));
     }
 
+    public function cetak()
+{
+    $categories = Category::get();
+    $datacetak = $categories; // Jika Anda ingin mengirimkan data lain ke view, Anda bisa menambahkannya di sini
+
+    return view('category.cetak', compact('categories', 'datacetak'));
+}
+
+
+
+
     public function add()
     {
         return view('category.add');
@@ -45,7 +56,7 @@ class CategoryController extends Controller
         $category->update($request->all());
         return redirect('categories')->with('status', 'Category Updated Successfuly');
     }
-    
+
     public function delete($slug)
     {
         $category = Category::where('slug', $slug)->first();
@@ -65,4 +76,5 @@ class CategoryController extends Controller
         $category->restore();
         return redirect('categories')->with('status', 'Category Restored Successfuly');
     }
+
 }

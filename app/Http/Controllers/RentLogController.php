@@ -14,5 +14,11 @@ class RentLogController extends Controller
         return view('rentlog.rent_log', compact('rentlogs'));
     }
 
-    
+    public function cetak()
+    {
+        $rent = RentLogs::get();
+        $datacetak = $rent; // Jika Anda ingin mengirimkan data lain ke view, Anda bisa menambahkannya di sini
+
+        return view('rentlog.cetak', compact('rent', 'datacetak'));
+    }
 }
