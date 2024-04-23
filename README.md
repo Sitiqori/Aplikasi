@@ -14,8 +14,8 @@
 
 #### Terdapat 3 User (Admin, Petugas, Peminjam) 
 #### Admin dapat mengakses (login, logout, Edit & Tambah Buku, Edit & Tambah Categories, Edit User, Generate Lapora. 
-#### Petugs dapat mengakses (login, logout
-#### Peminjam dapat Edit & Tambah Buku, Edit & Tambah Categories, Generate Lapora. 
+#### Petugs dapat mengakses (login, logout) Edit & Tambah Buku, Edit & Tambah Categories, Generate Lapora. 
+#### Peminjam dapat mengakses (login, logout), fitur peminjaman dan pengembalian serta ulsana , rating . 
 
 use cast
 ![alt text](https://github.com/Sitiqori/Aplikasi/blob/main/public/Use%20Case%20Diagram%20Qori%20(1).png?raw=true) 
