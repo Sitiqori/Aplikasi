@@ -3,7 +3,7 @@
 
 @section('content')
 <style>
-    
+
 </style>
  <form action="">
      <div class="row col-lg-6 d-flex justify-content-end">
@@ -29,7 +29,7 @@
         @foreach ($books as $item)
         <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
             <div class="card h-100">
-                <img src="{{ $item->cover != null ? asset('storage/cover/'. $item->cover) : asset('images/image-not-found.jpg') }}" class="card-img-top h-100" alt="..." draggable="false">
+                <img src="{{ $item->cover != null ? asset('storage/cover/' . $item->cover) : asset('images/cover_not_available.png') }}"  class="img-fluid" alt="Book Cover">
                 <div class="card-body">
                     <h5 class="card-title">{{ $item->book_code }}</h5>
                     <p class="card-text">{{ $item->title }}</p>
@@ -38,7 +38,7 @@
                     </p>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
-            </div>       
+            </div>
         </div>
         @endforeach
     </div>

@@ -86,6 +86,11 @@
     margin-right: 1rem;
 }
 
+.btn-fixed-size {
+    width: 100px; /* Tentukan lebar yang tetap */
+    height: 40px; /* Tentukan tinggi yang tetap */
+    padding: 5px 10px; /* Tentukan padding sesuai kebutuhan */
+}
 
 .ka-tg-isi{
     margin-top: 2rem;
@@ -146,68 +151,74 @@
              </div>
          </div>
          <div class="data mt-4 " style="margin-left: 2rem">
-          @foreach ($books as $item)
-    <div class="card mb-3 col-lg-3 col-md-4 col-sm-6 mb-3">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="{{ $item->cover != null ? asset('storage/cover/' . $item->cover) : asset('images/cover_not_available.png') }}"  class="img-fluid rounded-start" alt="..." draggable="false">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <p class="title">{{ $item->title }}</p>
-                    <p>bintang bintang</p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                        <div class="">
-                            @if ($item->status == 'in stock')
-                            <button class="btn btn-primary" disabled>In stock</button>
-                            @else
-                            <button class="btn btn-secondary" disabled>Out of Stock</button>
-                            @endif
-                        </div>
 
-                        <!--<button class="btn  fw-bold { $item->status == 'instock' ? 'text-success' : 'text-danger' }} me-md" disabled data-bs-toggle="modal" data-bs-target="#detailModal{{ $item->id }}"></button>
-                         Button trigger modal -->
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detailModal{{ $item->id }}">Detail</button>
+            <!--bagian data databuku-->
+            <div class="data mt-4 d-flex flex-wrap" style="margin-left: 0rem">
+                <!--bagian data data buku-->
+                @foreach ($books->sortByDesc('created_at') as $item)
+                <div class="card mb-3 col-lg-3 col-md-4 col-sm-6 mb-3 data-buku" style="display: flex; flex-direction: column;margin-right: 1rem">
+                    <div class="row g-0" style="flex-grow: 1;">
+                        <div class="col-md-5">
+                            <img src="{{ $item->cover != null ? asset('storage/cover/' . $item->cover) : asset('images/cover_not_available.png') }}" class="img-fluid" style="height: 100%; object-fit: cover;" alt="Book Cover">
+                        </div>
+                        <div class="col-md-7" style="flex-grow: 1;">
+                            <div class="card-body">
+                                <p class="title">{{ $item->title }}  <br> <span style="font-size: 12px;color:grey">--{{ $item->author }}</span></p>
+                                <div class="d-grid gap-2 justify-content-md-end">
+                                    <div class="">
+                                        @if ($item->status == 'in stock')
+                                        <button class="btn btn-primary btn-fixed-size" disabled>Instock</button>
+                                        @else
+                                        <button class="btn btn-secondary btn-fixed-size" disabled>Uninstock</button>
+                                        @endif
+                                    </div>
+                                    <button class="btn btn-primary btn-fixed-size" data-bs-toggle="modal" data-bs-target="#detailModal{{ $item->id }}">Detail</button>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="detailModal{{ $item->id }}" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
-     <div class="modal-dialog modal-lg">
-         <div class="modal-content">
-             <div class="modal-header">
-                 <h5 class="modal-title" id="detailModalLabel">{{ $item->title }}</h5>
-                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-             </div>
-             <div class="modal-body">
-                 <div class="row">
-                     <div class="col-md-4">
-                         <img src="{{ $item->cover != null ? asset('storage/cover/' . $item->cover) : asset('images/cover_not_available.png') }}"  class="img-fluid" alt="Book Cover">
-                     </div>
-                     <div class="col-md-8">
-                         <p>{{ $item->book_code }}</p>
-                         <p>{{ $item->author }}</p>
-                         <p>{{ $item->publisher }}</p>
-                         <p>{{ $item->publication_year }}</p>
-                         <p>{{ $item->sinopsis }}</p>
-                         <!-- Inside your book detail page -->
-                        <a class="btn btn-warning" href="{{ route('add-to-collection', ['book_id' => $item->id]) }}">Add to My Collection</a>
+                <!-- Modal -->
+                <div class="modal fade" id="detailModal{{ $item->id }}" tabindex="-1" aria-labelledby="detailModalLabel" aria-hidden="true">
+                 <div class="modal-dialog modal-lg">
+                     <div class="modal-content">
+                         <div class="modal-header">
+                             <h5 class="modal-title" id="detailModalLabel">{{ $item->title }}</h5>
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                         </div>
+                         <div class="modal-body">
+                             <div class="row">
+                                 <div class="col-md-4">
+                                     <img src="{{ $item->cover != null ? asset('storage/cover/' . $item->cover) : asset('images/cover_not_available.png') }}" class="img-fluid" style="object-fit: cover;" alt="Book Cover">
+                                 </div>
+                                 <div class="col-md-8">
+                                     <p>{{ $item->book_code }}</p>
+                                     <p>{{ $item->author }}</p>
+                                     <p>{{ $item->publisher }}</p>
+                                     <p>{{ $item->publication_year }}</p>
+                                     <p>{{ $item->sinopsis }}</p>
+                                     <!-- Inside your book detail page
+                                    <a class="btn btn-warning" href="{ route('add-to-collection', ['book_id' => $item->id]) }}">Add to My Collection</a>-->
 
-                         @if ($item->status == 'in stock')
-                             <button class="btn btn-primary" onclick="pinjamBuku('{{ $item->id }}')">Pinjam</button>
-                         @else
-                             <button class="btn btn-secondary" disabled>Out of Stock</button>
-                         @endif
+                                     @if ($item->status == 'in stock')
+                                         <button class="btn btn-primary" onclick="pinjamBuku('{{ $item->id }}')">Pinjam</button>
+                                     @else
+                                         <button class="btn btn-secondary" disabled>Out of Stock</button>
+                                     @endif
+                                 </div>
+                             </div>
+                         </div>
                      </div>
                  </div>
              </div>
-         </div>
-     </div>
- </div>
 
-@endforeach
+            @endforeach
+            </div>
+
+
+
+
       </div>
 
       </div>

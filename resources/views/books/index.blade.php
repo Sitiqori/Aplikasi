@@ -71,7 +71,7 @@
                                 <div class="container-fluid">
                                     <div class="row">
                                         <div class="col-md-4">
-                                            <img src="{{ asset('path/to/book/cover.jpg') }}" class="img-fluid" alt="Book Cover">
+                                            <img src="{{ $item->cover != null ? asset('storage/cover/' . $item->cover) : asset('images/cover_not_available.png') }}"  class="img-fluid" alt="Book Cover">
                                         </div>
                                         <div class="col-md-8">
                                             <p><strong>Book Code:</strong> {{ $data->book_code }}</p>
